@@ -189,49 +189,45 @@ class TaskManager:
                 f"Status: {status}"
             )
 
-    # COMPLETE TASK
+        # COMPLETE TASK
+        def complete_task(self):
+            # Get the task selected by the user.
+            selected = task_list.curselection()
 
-    # This function marks a selected task as completed.
-    def complete_task(self):
+            # Check if the user selected a task.
+            if not selected:
+                messagebox.showerror(
+                    "Error",
+                    "Please select a task."
+                )
+                return
 
-        # Get the task currently selected in the Listbox.
-        selected = task_list.curselection()
+            # Get the selected Task object from the list.
+            task = self.tasks[selected[0]]
 
+            # Check if the task is already completed.
+            if task.completed:
+                messagebox.showinfo(
+                    "Information",
+                    "This task is already completed."
+                )
+                return
 
-        # Check if the user has not selected a task.
-        if not selected:
+            # Mark the task as completed.
+            task.completed = True
 
-            # Display an error message.
-            messagebox.showerror(
-                "Error",
-                "Please select a task."
+            # Save the updated task list.
+            self.save_tasks()
+
+            # Refresh the task list.
+            self.view_tasks()
+
+            # Tell the user the task was completed.
+            messagebox.showinfo(
+                "Success",
+                "Task marked as completed!"
             )
 
-            # Stop the function.
-            return
-
-
-        # Get the Task object that matches the selected Listbox position.
-        task = self.tasks[selected[0]]
-
-
-        # Change the task's completed value to True.
-        task.completed = True
-
-
-        # Save the updated task information.
-        self.save_tasks()
-
-
-        # Refresh the task list so the new status is displayed.
-        self.view_tasks()
-
-
-        # Tell the user the task has been completed.
-        messagebox.showinfo(
-            "Success",
-            "Task marked as completed!"
-        )
 
     # DELETE TASK
 
