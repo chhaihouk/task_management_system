@@ -7,6 +7,7 @@ from tkinter import messagebox
 
 # Import datetime so we can check whether the user entered a valid date.
 from datetime import datetime
+from unicodedata import name
 
 # TASK CLASS
 
@@ -59,6 +60,9 @@ class TaskManager:
         # Get the due date entered by the user.
         due_date = date_entry.get().strip()
 
+        # Store the priority options allowed by the program.
+        valid_priorities = ["High", "Medium", "Low"]
+
         # Validate task name.
         if name == "":
             messagebox.showerror(
@@ -77,18 +81,13 @@ class TaskManager:
 
         # VALIDATE PRIORITY
 
-        # Check whether the selected priority is valid.
-        if priority not in ["High", "Medium", "Low"]:
-
-            # Display an error message if the priority is invalid.
+        # Check that the selected priority is valid.
+        if priority not in valid_priorities:
             messagebox.showerror(
                 "Error",
-                "Please select a valid priority."
+                "Please select High, Medium, or Low priority."
             )
-
-            # Stop the function.
-            return
-
+        return
         # VALIDATE DATE
 
         # Try to convert the entered date into a real date.
@@ -192,7 +191,7 @@ class TaskManager:
             )
 
         # COMPLETE TASK
-        def complete_task(self):
+    def complete_task(self):
             # Get the task selected by the user.
             selected = task_list.curselection()
 
