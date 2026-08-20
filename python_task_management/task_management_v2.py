@@ -59,21 +59,23 @@ class TaskManager:
         # Get the due date entered by the user.
         due_date = date_entry.get().strip()
 
-        # VALIDATE TASK NAME
-        # Check if the user left the task name empty.
+        # Validate task name.
         if name == "":
-
-            # Display an error message if no task name was entered.
             messagebox.showerror(
                 "Error",
                 "Task name cannot be empty."
             )
+            return
 
-            # Stop the function so the invalid task is not added.
+        # Check that the task name is long enough.
+        if len(name) < 3:
+            messagebox.showerror(
+                "Error",
+                "Task name must be at least 3 characters long."
+            )
             return
 
         # VALIDATE PRIORITY
-
 
         # Check whether the selected priority is valid.
         if priority not in ["High", "Medium", "Low"]:
