@@ -228,48 +228,47 @@ class TaskManager:
                 "Task marked as completed!"
             )
 
-
     # DELETE TASK
-
-    # This function deletes a selected task.
     def delete_task(self):
-
-        # Find which task the user has selected.
+        # Get the task selected by the user.
         selected = task_list.curselection()
 
-
-        # Check whether no task has been selected.
+        # Check if the user selected a task.
         if not selected:
-
-            # Display an error message.
             messagebox.showerror(
                 "Error",
-                "Please select a task."
+                "Please select a task to delete."
             )
-
-            # Stop the function.
             return
 
+        # Store the position of the selected task.
+        task_index = selected[0]
 
-        # Get the Task object that the user selected.
-        task = self.tasks[selected[0]]
+        # Get the selected Task object.
+        task = self.tasks[task_index]
 
-
-        # Ask the user to confirm before deleting the task.
-        if messagebox.askyesno(
+        # Ask the user to confirm the deletion.
+        confirm = messagebox.askyesno(
             "Delete Task",
-            f"Delete '{task.name}'?"
-        ):
+            f"Are you sure you want to delete '{task.name}'?"
+        )
 
+        # Only delete the task if the user chooses Yes.
+        if confirm:
             # Remove the selected task from the task list.
-            self.tasks.pop(selected[0])
+            self.tasks.pop(task_index)
 
             # Save the updated task list.
             self.save_tasks()
 
-            # Refresh the Listbox so the deleted task disappears.
+            # Refresh the task list.
             self.view_tasks()
 
+            # Tell the user the task was deleted.
+            messagebox.showinfo(
+                "Success",
+                "Task deleted successfully."
+            )
 
     # SAVE TASKS
 
