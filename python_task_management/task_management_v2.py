@@ -341,10 +341,14 @@ window = tk.Tk()
 window.title("Task Management System - Version 2")
 
 
-# Set the size of the window to 850 pixels wide and 550 pixels high.
+# Set the starting size of the window.
 window.geometry("850x550")
 
+# Allow the window to be resized by the user.
+window.resizable(True, True)
 
+# Set a minimum size so the GUI does not become too small.
+window.minsize(700, 500)
 # TITLE
 
 # Create a large title label for the program.
