@@ -143,54 +143,42 @@ class TaskManager:
         )
 
     # VIEW TASKS
-
-    # This function displays all tasks in the Listbox.
     def view_tasks(self):
-
-        # Remove everything currently displayed in the task list.
+        # Clear the current task list before displaying it again.
         task_list.delete(0, tk.END)
 
-        # Check whether there are no tasks.
+        # Check if there are no tasks.
         if not self.tasks:
-
-            # Display a message telling the user there are no tasks.
             task_list.insert(
                 tk.END,
                 "No tasks available."
             )
-
-            # Stop the function.
             return
 
-
-        # Loop through every task in the task list.
-        # enumerate() gives each task a number starting from 1.
+        # Go through each task and give it a number.
         for number, task in enumerate(self.tasks, 1):
 
-            # Decide which status text should be displayed.
-            # If completed is True, show "Completed".
-            # Otherwise show "Not Completed".
-            status = "Completed" if task.completed else "Not Completed"
+            # Decide which status should be displayed.
+            if task.completed:
+                status = "Completed"
+            else:
+                status = "Not Completed"
 
-
-            # Add the task information to the Listbox.
-            task_list.insert(
-                tk.END,
-
-                # Display the task number and name.
+            # Create a clear display line for the task.
+            task_text = (
                 f"{number}. {task.name} | "
-
-                # Display the task priority.
                 f"Priority: {task.priority} | "
-
-                # Display the task due date.
                 f"Due: {task.due_date} | "
-
-                # Display whether the task is completed.
                 f"Status: {status}"
             )
 
-        # COMPLETE TASK
+            # Add the task to the Listbox.
+            task_list.insert(
+                tk.END,
+                task_text
+            )
+
+     # COMPLETE TASK
     def complete_task(self):
             # Get the task selected by the user.
             selected = task_list.curselection()
