@@ -469,11 +469,19 @@ date_entry.grid(
     column=1,
     padx=5
 )
-
+# Show an example of the required date format.
+tk.Label(
+    input_frame,
+    text="Example: 25/08/2026"
+).grid(
+    row=2,
+    column=2,
+    padx=5
+)
 # Tell the user which date format to use.
 tk.Label(
     input_frame,
-    text="(DD/MM/YYYY)"
+    text="Example: 25/08/2026"
 ).grid(
     row=2,
     column=2,
