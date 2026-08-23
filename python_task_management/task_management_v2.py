@@ -87,27 +87,28 @@ class TaskManager:
                 "Error",
                 "Please select High, Medium, or Low priority."
             )
-        return
+            return
         # VALIDATE DATE
 
-        # Try to convert the entered date into a real date.
+        # Validate the due date.
         try:
+            # Convert the entered text into a real date.
+            valid_date = datetime.strptime(due_date, "%d/%m/%Y")
 
-            # Check that the date follows the DD/MM/YYYY format.
-            datetime.strptime(due_date, "%d/%m/%Y")
-
-        # If the date cannot be converted, ValueError is produced.
         except ValueError:
-
-            # Tell the user that the date format is incorrect.
+            # Tell the user if the date is invalid.
             messagebox.showerror(
                 "Error",
-                "Enter the date as DD/MM/YYYY."
+                "Please enter a valid date using DD/MM/YYYY."
             )
-
-            # Stop the function so an invalid date is not saved.
             return
-
+        # Check that the due date is not in the past.
+        if valid_date < datetime.now():
+            messagebox.showerror(
+        "Error",
+        "The due date cannot be in the past."
+        )
+            return
         # CREATE THE TASK
 
         # Create a new Task object using the information entered.
@@ -148,7 +149,6 @@ class TaskManager:
 
         # Remove everything currently displayed in the task list.
         task_list.delete(0, tk.END)
-
 
         # Check whether there are no tasks.
         if not self.tasks:
