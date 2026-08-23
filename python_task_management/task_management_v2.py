@@ -510,7 +510,7 @@ task_list = tk.Listbox(
     width=100,
 
     # Set the number of visible rows.
-    height=12,
+    height=14,
 
     # Make the task text easier to read.
     font=("Arial", 11),
