@@ -484,9 +484,15 @@ tk.Label(
     font=("Arial", 14, "bold")
 ).pack(pady=(5, 0))
 
+# Create a frame to hold the task list and scrollbar.
+task_list_frame = tk.Frame(window)
+
+# Place the frame inside the main window.
+task_list_frame.pack(pady=10)
+
 # Create a Listbox to display all of the tasks.
 task_list = tk.Listbox(
-    window,
+    task_list_frame,
 
     # Set the width of the Listbox.
     width=100,
@@ -495,9 +501,29 @@ task_list = tk.Listbox(
     height=12
 )
 
-# Place the Listbox in the main window.
-task_list.pack(pady=15)
+# Place the Listbox on the left side of the frame.
+task_list.pack(
+    side=tk.LEFT
+)
 
+# Create a scrollbar for the task list.
+task_scrollbar = tk.Scrollbar(
+    task_list_frame,
+
+    # Make the scrollbar move the Listbox vertically.
+    command=task_list.yview
+)
+
+# Place the scrollbar beside the Listbox.
+task_scrollbar.pack(
+    side=tk.RIGHT,
+    fill=tk.Y
+)
+
+# Connect the Listbox to the scrollbar.
+task_list.config(
+    yscrollcommand=task_scrollbar.set
+)
 # BUTTONS
 
 # Create a label above the buttons.
