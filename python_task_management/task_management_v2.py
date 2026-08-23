@@ -337,7 +337,12 @@ class TaskManager:
         except FileNotFoundError:
             # No saved task file exists yet.
             pass
-
+        except OSError:
+            # Tell the user if the task file cannot be opened.
+            messagebox.showerror(
+                "Load Error",
+                "The saved tasks could not be loaded."
+            )
 # TKINTER GUI
 
 # Create the main Tkinter window.
