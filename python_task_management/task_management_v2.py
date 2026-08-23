@@ -503,7 +503,6 @@ task_list_frame = tk.Frame(window)
 task_list_frame.pack(pady=10)
 
 # Create a Listbox to display all of the tasks.
-# Create a Listbox to display all of the tasks.
 task_list = tk.Listbox(
     task_list_frame,
 
@@ -512,6 +511,9 @@ task_list = tk.Listbox(
 
     # Set the number of visible rows.
     height=12,
+
+    # Make the task text easier to read.
+    font=("Arial", 11),
 
     # Make the selected task easier to see.
     selectbackground="lightblue",
