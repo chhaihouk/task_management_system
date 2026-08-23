@@ -477,6 +477,13 @@ tk.Label(
 )
 # TASK LIST
 
+# Create a label above the task list.
+tk.Label(
+    window,
+    text="Your Tasks",
+    font=("Arial", 14, "bold")
+).pack(pady=(5, 0))
+
 # Create a Listbox to display all of the tasks.
 task_list = tk.Listbox(
     window,
@@ -487,7 +494,6 @@ task_list = tk.Listbox(
     # Set the number of visible rows.
     height=12
 )
-
 
 # Place the Listbox in the main window.
 task_list.pack(pady=15)
