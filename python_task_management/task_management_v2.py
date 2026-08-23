@@ -500,9 +500,15 @@ task_list.pack(pady=15)
 
 # BUTTONS
 
+# Create a label above the buttons.
+tk.Label(
+    window,
+    text="Task Actions",
+    font=("Arial", 14, "bold")
+).pack(pady=(0, 5))
+
 # Create a frame to hold all of the buttons.
 button_frame = tk.Frame(window)
-
 
 # Place the button frame inside the main window.
 button_frame.pack()
@@ -512,6 +518,69 @@ button_frame.pack()
 # This also loads any previously saved tasks.
 task_manager = TaskManager()
 
+
+# ADD TASK BUTTON
+
+# Create the Add Task button.
+tk.Button(
+    button_frame,
+    text="Add Task",
+    width=15,
+    command=task_manager.add_task
+).grid(
+    row=0,
+    column=0,
+    padx=8,
+    pady=5
+)
+
+
+# REFRESH BUTTON
+
+# Create the Refresh button.
+tk.Button(
+    button_frame,
+    text="Refresh",
+    width=15,
+    command=task_manager.view_tasks
+).grid(
+    row=0,
+    column=1,
+    padx=8,
+    pady=5
+)
+
+
+# COMPLETE BUTTON
+
+# Create the Complete button.
+tk.Button(
+    button_frame,
+    text="Complete",
+    width=15,
+    command=task_manager.complete_task
+).grid(
+    row=0,
+    column=2,
+    padx=8,
+    pady=5
+)
+
+
+# DELETE BUTTON
+
+# Create the Delete button.
+tk.Button(
+    button_frame,
+    text="Delete",
+    width=15,
+    command=task_manager.delete_task
+).grid(
+    row=0,
+    column=3,
+    padx=8,
+    pady=5
+)
 # ADD TASK BUTTON
 
 # Create the Add Task button.
