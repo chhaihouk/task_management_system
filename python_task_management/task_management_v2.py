@@ -705,12 +705,13 @@ tk.Button(
     column=3,
     padx=5
 )
-
-
 # DISPLAY SAVED TASKS
 
 # Display any tasks that were loaded from tasks.txt.
 task_manager.view_tasks()
+
+# Automatically place the cursor inside the task name input.
+name_entry.focus()
 
 # RUN PROGRAM
 
