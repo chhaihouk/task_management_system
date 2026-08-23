@@ -385,20 +385,28 @@ tk.Label(
     pady=5
 )
 
-
 # Create a text box where the user can enter a task name.
 name_entry = tk.Entry(
     input_frame,
     width=30
 )
 
-
 # Place the task name text box beside its label.
 name_entry.grid(
     row=0,
-    column=1
+    column=1,
+    padx=5
 )
 
+# Add a small instruction showing the user what to enter.
+tk.Label(
+    input_frame,
+    text="(At least 3 characters)"
+).grid(
+    row=0,
+    column=2,
+    padx=5
+)
 # PRIORITY
 
 # Create a label for the priority selection.
@@ -445,20 +453,28 @@ tk.Label(
     pady=5
 )
 
-
 # Create a text box where the user enters the due date.
 date_entry = tk.Entry(
     input_frame,
     width=30
 )
 
-
 # Place the date input box beside its label.
 date_entry.grid(
     row=2,
-    column=1
+    column=1,
+    padx=5
 )
 
+# Tell the user which date format to use.
+tk.Label(
+    input_frame,
+    text="(DD/MM/YYYY)"
+).grid(
+    row=2,
+    column=2,
+    padx=5
+)
 # TASK LIST
 
 # Create a Listbox to display all of the tasks.
