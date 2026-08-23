@@ -299,51 +299,44 @@ class TaskManager:
                 )
 
     # LOAD TASKS
-
-    # This function loads previously saved tasks from the text file.
     def load_tasks(self):
-
-        # Try to open the saved task file.
+        # Try to open the file containing saved tasks.
         try:
-
-            # Open tasks.txt in read mode.
-            # "r" means the program can read information from the file.
             with open("tasks.txt", "r") as file:
 
-
-                # Read the file one line at a time.
+                # Read each saved task one line at a time.
                 for line in file:
 
-                    # Remove extra spaces/newlines and split the line
-                    # into separate pieces using the | symbol.
+                    # Remove extra spaces and split the data.
                     parts = line.strip().split("|")
 
+                    # Check that the saved data has four parts.
+                    if len(parts) != 4:
+                        continue
 
-                    # Check that the line contains exactly four pieces.
-                    if len(parts) == 4:
+                    # Store each part of the saved task.
+                    name, priority, due_date, completed = parts
 
-                        # Store each piece of information in a variable.
-                        name, priority, due_date, completed = parts
+                    # Check that the saved priority is valid.
+                    if priority not in ["High", "Medium", "Low"]:
+                        continue
 
+                    # Check that the completion value is valid.
+                    if completed not in ["0", "1"]:
+                        continue
 
-                        # Create a Task object using the saved information.
-                        self.tasks.append(
-                            Task(
-                                name,
-                                priority,
-                                due_date,
-
-                                # Convert "1" back to True.
-                                # Anything else becomes False.
-                                completed == "1"
-                            )
+                    # Create the Task object and add it to the list.
+                    self.tasks.append(
+                        Task(
+                            name,
+                            priority,
+                            due_date,
+                            completed == "1"
                         )
+                    )
 
-
-        # If tasks.txt does not exist yet, FileNotFoundError occurs.
         except FileNotFoundError:
-
-            # Do nothing because there are no saved tasks yet.
+            # No saved task file exists yet.
             pass
 
 # TKINTER GUI
