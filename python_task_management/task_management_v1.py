@@ -61,48 +61,21 @@ class TaskManager: #This class manages all of the tasks
             print("\nPlease enter a valid number.\n") #Tell the user they need to enter a number
 
     # DELETE TASK
-
     def delete_task(self):
-        # Check if there are any tasks.
-        if len(self.tasks) == 0:
-
-            # Tell the user there are no tasks.
-            print("\nThere are no tasks to delete.\n")
-
-            # Stop the function.
-            return
-
-        # Display the tasks.
-        self.view_tasks()
-
-        # Ask the user which task they want to delete.
-        choice = input("Enter the task number to delete: ")
-
-        # Check whether the input is a number.
-        if choice.isdigit():
-
-            # Convert the input to an integer.
-            task_number = int(choice)
-
-            # Check whether the task number is valid.
-            if 1 <= task_number <= len(self.tasks):
-
-                # Remove the selected task.
-                removed_task = self.tasks.pop(task_number - 1)
-
-                # Tell the user which task was deleted.
-                print(f"\n'{removed_task.name}' was deleted.\n")
-
+        if len(self.tasks) == 0: #Check if there are any tasks
+            print("\nThere are no tasks to delete.\n") #Tell the user there are no tasks
+            return #Stop the function
+        self.view_tasks() #Display the tasks
+        choice = input("Enter the task number to delete: ") #Ask the user which task they want to delete
+        if choice.isdigit(): #Check whether the input is a number
+            task_number = int(choice) #Convert the input to an integer
+            if 1 <= task_number <= len(self.tasks): #Check whether the task number is valid
+                removed_task = self.tasks.pop(task_number - 1) #Remove the selected task
+                print(f"\n'{removed_task.name}' was deleted.\n") #Tell the user which task was deleted
             else:
-
-                # Tell the user the number is invalid.
-                print("\nInvalid task number.\n")
-
+                print("\nInvalid task number.\n") #Tell the user the number is invalid
         else:
-
-            # Tell the user to enter a valid number.
-            print("\nPlease enter a valid number.\n")
-
+            print("\nPlease enter a valid number.\n") #Tell the user to enter a valid number
 
 # MAIN PROGRAM
 
