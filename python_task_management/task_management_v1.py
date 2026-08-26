@@ -9,62 +9,33 @@ class Task:
         self.completed = False
 
 # TASK MANAGER CLASS
-class TaskManager: #This class manages all of the tasks.
+class TaskManager: #This class manages all of the tasks
     def __init__(self):
-        self.tasks = [] #Create an empty list to store Task objects.
+        self.tasks = [] #Create an empty list to store Task objects
     # ADD TASK
     def add_task(self):
-        task_name = input("Enter the task name: ") #Ask the user to enter the task name.
-        priority = input("Enter priority (High/Medium/Low): ") #Ask the user to enter the priority.
-        due_date = input("Enter due date (e.g. 15/08/2026): ") #Ask the user to enter the due date.
-        new_task = Task(task_name, priority, due_date) #Create a new Task object.
-        self.tasks.append(new_task) #Add the new Task object to the task list.
-        print("\nTask added successfully!\n") #Tell the user that the task was added.
+        task_name = input("Enter the task name: ") #Ask the user to enter the task name
+        priority = input("Enter priority (High/Medium/Low): ") #Ask the user to enter the priority
+        due_date = input("Enter due date (e.g. 15/08/2026): ") #Ask the user to enter the due date
+        new_task = Task(task_name, priority, due_date) #Create a new Task object
+        self.tasks.append(new_task) #Add the new Task object to the task list
+        print("\nTask added successfully!\n") #Tell the user that the task was added
     # VIEW TASKS
-
     def view_tasks(self):
-        # Check if there are no tasks.
-        if len(self.tasks) == 0:
-
-            # Tell the user there are no tasks.
-            print("\nThere are no tasks to display.\n")
-
-            # Stop the function.
-            return
-
-        # Print the heading.
-        print("\n========== YOUR TASKS ==========")
-
-        # Loop through every task.
-        for number, task in enumerate(self.tasks, start=1):
-
-            # Check whether the task has been completed.
-            if task.completed:
-
-                # Set the status to Completed.
-                status = "Completed"
-
+        if len(self.tasks) == 0: #Check if there are no tasks
+            print("\nThere are no tasks to display.\n") #Tell the user there are no tasks
+            return #Stop the function
+        print("\n========== YOUR TASKS ==========") #Print the heading
+    for number, task in enumerate(self.tasks, start=1): #Loop through every task
+            if task.completed: #Check whether the task has been completed
+                status = "Completed" #Set the status to Completed
             else:
-
-                # Set the status to Not Completed.
-                status = "Not Completed"
-
-            # Display the task number and name.
-            print(f"\nTask {number}: {task.name}")
-
-            # Display the priority.
-            print(f"Priority: {task.priority}")
-
-            # Display the due date.
-            print(f"Due Date: {task.due_date}")
-
-            # Display the completion status.
-            print(f"Status: {status}")
-
-        # Print a line at the bottom.
-        print("\n================================\n")
-
-
+                status = "Not Completed" #Set the status to Not Completed
+            print(f"\nTask {number}: {task.name}") #Display the task number and name
+            print(f"Priority: {task.priority}") #Display the priority
+            print(f"Due Date: {task.due_date}") #Display the due date
+            print(f"Status: {status}") #Display the completion status
+            print("\n================================\n") #Print a line at the bottom
     # COMPLETE TASK
 
     def complete_task(self):
