@@ -1,16 +1,11 @@
 # TASK MANAGEMENT SYSTEM - VERSION 1
 # TASK CLASS
-
+# This class represents one individual task
 class Task:
-    # This class represents one individual task.
-    def __init__(self, name, priority, due_date):
-        # Store the name of the task.
-        self.name = name
-        # Store the priority of the task.
-        self.priority = priority
-        # Store the due date of the task.
-        self.due_date = due_date
-        # Every new task starts as not completed.
+    def __init__(self, name, priority, due_date): #Store the name of the task
+        self.name = name #Store the priority of the task
+        self.priority = priority #Store the due date of the task
+        self.due_date = due_date #Every new task starts as not completed
         self.completed = False
 
 # TASK MANAGER CLASS
