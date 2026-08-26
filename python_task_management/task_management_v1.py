@@ -22,66 +22,43 @@ class TaskManager: #This class manages all of the tasks
         print("\nTask added successfully!\n") #Tell the user that the task was added
     # VIEW TASKS
     def view_tasks(self):
+
         if len(self.tasks) == 0: #Check if there are no tasks
             print("\nThere are no tasks to display.\n") #Tell the user there are no tasks
             return #Stop the function
+
         print("\n========== YOUR TASKS ==========") #Print the heading
-    for number, task in enumerate(self.tasks, start=1): #Loop through every task
+
+        for number, task in enumerate(self.tasks, start=1): #Loop through every task
+
             if task.completed: #Check whether the task has been completed
                 status = "Completed" #Set the status to Completed
+
             else:
                 status = "Not Completed" #Set the status to Not Completed
+
             print(f"\nTask {number}: {task.name}") #Display the task number and name
             print(f"Priority: {task.priority}") #Display the priority
             print(f"Due Date: {task.due_date}") #Display the due date
             print(f"Status: {status}") #Display the completion status
             print("\n================================\n") #Print a line at the bottom
     # COMPLETE TASK
-
     def complete_task(self):
-        # Check if there are any tasks.
-        if len(self.tasks) == 0:
-
-            # Tell the user there are no tasks.
-            print("\nThere are no tasks to complete.\n")
-
-            # Stop the function.
-            return
-
-        # Display the current tasks.
-        self.view_tasks()
-
-        # Ask the user which task they want to complete.
-        choice = input("Enter the task number to complete: ")
-
-        # Check whether the input is a number.
-        if choice.isdigit():
-
-            # Convert the input to an integer.
-            task_number = int(choice)
-
-            # Check whether the task number is valid.
-            if 1 <= task_number <= len(self.tasks):
-
-                # Get the selected Task object.
-                selected_task = self.tasks[task_number - 1]
-
-                # Change its completed status to True.
-                selected_task.completed = True
-
-                # Tell the user the task was completed.
-                print("\nTask marked as completed!\n")
-
+        if len(self.tasks) == 0: #Check if there are any tasks
+            print("\nThere are no tasks to complete.\n") #Tell the user there are no tasks
+            return #Stop the function
+        self.view_tasks() #Display the current tasks
+        choice = input("Enter the task number to complete: ") #Ask the user which task they want to complete
+        if choice.isdigit(): #Check whether the input is a number
+            task_number = int(choice) #Convert the input to an integer
+            if 1 <= task_number <= len(self.tasks): #Check whether the task number is valid
+                selected_task = self.tasks[task_number - 1] #Get the selected Task object
+                selected_task.completed = True #Change its completed status to True
+                print("\nTask marked as completed!\n") #Tell the user the task was completed
             else:
-
-                # Tell the user the number is invalid.
-                print("\nInvalid task number.\n")
-
+                print("\nInvalid task number.\n") #Tell the user the number is invalid
         else:
-
-            # Tell the user they need to enter a number.
-            print("\nPlease enter a valid number.\n")
-
+            print("\nPlease enter a valid number.\n") #Tell the user they need to enter a number
 
     # DELETE TASK
 
