@@ -9,35 +9,17 @@ class Task:
         self.completed = False
 
 # TASK MANAGER CLASS
-
-class TaskManager:
-    # This class manages all of the tasks.
-
+class TaskManager: #This class manages all of the tasks.
     def __init__(self):
-        # Create an empty list to store Task objects.
-        self.tasks = []
-
+        self.tasks = [] #Create an empty list to store Task objects.
     # ADD TASK
-
     def add_task(self):
-        # Ask the user to enter the task name.
-        task_name = input("Enter the task name: ")
-        # Ask the user to enter the priority.
-        priority = input("Enter priority (High/Medium/Low): ")
-
-        # Ask the user to enter the due date.
-        due_date = input("Enter due date (e.g. 15/08/2026): ")
-
-        # Create a new Task object.
-        new_task = Task(task_name, priority, due_date)
-
-        # Add the new Task object to the task list.
-        self.tasks.append(new_task)
-
-        # Tell the user that the task was added.
-        print("\nTask added successfully!\n")
-
-
+        task_name = input("Enter the task name: ") #Ask the user to enter the task name.
+        priority = input("Enter priority (High/Medium/Low): ") #Ask the user to enter the priority.
+        due_date = input("Enter due date (e.g. 15/08/2026): ") #Ask the user to enter the due date.
+        new_task = Task(task_name, priority, due_date) #Create a new Task object.
+        self.tasks.append(new_task) #Add the new Task object to the task list.
+        print("\nTask added successfully!\n") #Tell the user that the task was added.
     # VIEW TASKS
 
     def view_tasks(self):
