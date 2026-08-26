@@ -78,16 +78,11 @@ class TaskManager: #This class manages all of the tasks
             print("\nPlease enter a valid number.\n") #Tell the user to enter a valid number
 
 # MAIN PROGRAM
+task_manager = TaskManager() #Create a TaskManager object
 
-# Create a TaskManager object.
-task_manager = TaskManager()
+running = True #This variable controls whether the program keeps running
 
-# This variable controls whether the program keeps running.
-running = True
-
-
-# Continue running while running is True.
-while running:
+while running: #Continue running while running is True.
 
     # Display the main menu.
     print("================================")
@@ -100,43 +95,17 @@ while running:
     print("5. Exit")
     print("================================")
 
-    # Ask the user to choose an option.
-    choice = input("Enter your choice: ")
-
-    # Check if the user selected option 1.
-    if choice == "1":
-
-        # Call the add_task method.
-        task_manager.add_task()
-
-    # Check if the user selected option 2.
-    elif choice == "2":
-
-        # Call the view_tasks method.
-        task_manager.view_tasks()
-
-    # Check if the user selected option 3.
-    elif choice == "3":
-        # Call the complete_task method.
-        task_manager.complete_task()
-
-    # Check if the user selected option 4.
-    elif choice == "4":
-
-        # Call the delete_task method.
-        task_manager.delete_task()
-
-    # Check if the user selected option 5.
-    elif choice == "5":
-
-        # Stop the program.
-        running = False
-
-        # Tell the user the program is closing.
-        print("\nThank you for using the Task Management System!")
-
-    # If the user enters anything else.
-    else:
-
-        # Tell the user their choice is invalid.
-        print("\nInvalid choice. Please select 1-5.\n")
+    choice = input("Enter your choice: ") #Ask the user to choose an option
+    if choice == "1": #Check if the user selected option 1
+        task_manager.add_task() #Call the add_task method
+    elif choice == "2": #Check if the user selected option 2
+        task_manager.view_tasks() #Call the view_tasks method
+    elif choice == "3": # Check if the user selected option 3.
+        task_manager.complete_task() #Call the complete_task method
+    elif choice == "4": #Check if the user selected option 4
+        task_manager.delete_task() #Call the delete_task method
+    elif choice == "5": #Check if the user selected option 5
+        running = False #Stop the program
+        print("\nThank you for using the Task Management System!") #Tell the user the program is closing
+    else: #If the user enters anything else
+        print("\nInvalid choice. Please select 1-5.\n") #Tell the user their choice is invalid
