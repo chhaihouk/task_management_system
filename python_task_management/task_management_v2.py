@@ -59,26 +59,17 @@ class TaskManager: #This class controls the tasks and the main task functions
         messagebox.showinfo("Success","Task added successfully!") #Tell the user that the task was successfully added
     # VIEW TASKS
     def view_tasks(self):
-        # Clear the current task list before displaying it again.
-        task_list.delete(0, tk.END)
-
+        task_list.delete(0, tk.END) #Clear the current task list before displaying it again
         # Check if there are no tasks.
         if not self.tasks:
-            task_list.insert(
-                tk.END,
-                "No tasks available."
-            )
+            task_list.insert(tk.END,"No tasks available.")
             return
-
-        # Go through each task and give it a number.
-        for number, task in enumerate(self.tasks, 1):
-
+        for number, task in enumerate(self.tasks, 1): #Go through each task and give it a number
             # Decide which status should be displayed.
             if task.completed:
                 status = "Completed"
             else:
                 status = "Not Completed"
-
             # Create a clear display line for the task.
             task_text = (
                 f"{number}. {task.name} | "
@@ -86,13 +77,7 @@ class TaskManager: #This class controls the tasks and the main task functions
                 f"Due: {task.due_date} | "
                 f"Status: {status}"
             )
-
-            # Add the task to the Listbox.
-            task_list.insert(
-                tk.END,
-                task_text
-            )
-
+            task_list.insert(tk.END,task_text) #Add the task to the Listbox
      # COMPLETE TASK
     def complete_task(self):
             # Get the task selected by the user.
