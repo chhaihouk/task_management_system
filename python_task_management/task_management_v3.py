@@ -458,3 +458,11 @@ class TaskManagementApp:
         self.filter_status_var.set("All") #Reset the status filter
         self.sort_var.set("Default") #Reset the sorting option
         self.refresh_tasks() #Display all tasks again
+# START PROGRAM
+login_window = tk.Tk() #Create the login window
+login = LoginWindow(login_window) #Create the login system
+login_window.mainloop() #Start the login event loop
+if login.logged_in:
+    window = tk.Tk() #Create the main Tkinter window
+    app = TaskManagementApp(window) #Create the application
+    window.mainloop() #Start the main event loop
