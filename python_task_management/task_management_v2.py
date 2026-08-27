@@ -148,26 +148,13 @@ class TaskManager: #This class controls the tasks and the main task functions
             # No saved task file exists yet.
             pass
         except OSError:
-            # Tell the user if the task file cannot be opened.
-            messagebox.showerror("Load Error","The saved tasks could not be loaded.")
+            messagebox.showerror("Load Error","The saved tasks could not be loaded.") #Tell the user if the task file cannot be opened
 # TKINTER GUI
-
-# Create the main Tkinter window.
-window = tk.Tk()
-
-
-# Set the title shown at the top of the window.
-window.title("Task Management System - Version 2")
-
-
-# Set the starting size of the window.
-window.geometry("850x550")
-
-# Allow the window to be resized by the user.
-window.resizable(True, True)
-
-# Set a minimum size so the GUI does not become too small.
-window.minsize(700, 500)
+window = tk.Tk() #Create the main Tkinter window
+window.title("Task Management System - Version 2") #Set the title shown at the top of the window
+window.geometry("850x550") #Set the starting size of the window
+window.resizable(True, True) #Allow the window to be resized by the user
+window.minsize(700, 500) #Set a minimum size so the GUI does not become too small
 # TITLE
 
 # Create a large title label for the program.
