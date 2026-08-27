@@ -51,3 +51,12 @@ class TaskManager:
         if not valid:
             return False, message
         return True, "" #Return valid
+    # Add a new task.
+    def add_task(self, name, priority, due_date):
+        valid, message = self.validate_task(name,priority,due_date) #Validate task information
+        if not valid:
+            return False, message
+        new_task = Task(name,priority,due_date) #Create a new task
+        self.tasks.append(new_task) #Add task to the list
+        self.save_tasks() #Save the updated tasks
+        return True, "Task added successfully."
