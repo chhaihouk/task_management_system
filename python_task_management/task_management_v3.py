@@ -165,3 +165,33 @@ class LoginWindow:
     # Hash the password for safer storage.
     def hash_password(self, password):
         return hashlib.sha256(password.encode()).hexdigest() #Return the password hash
+        # Set or change the password.
+    def set_password(self):
+        password_window = tk.Toplevel(self.window) #Create password setup window
+        password_window.title("Set Password") #Set popup title
+        password_window.geometry("350x220") #Set popup size
+        password_window.resizable(False, False) #Prevent resizing
+        password_window.configure(bg="#0F172A") #Set popup colour
+        tk.Label(password_window,text="Create a Password",font=("Arial", 15, "bold"),bg="#0F172A",fg="#38BDF8").pack(pady=15) #Create popup title
+        tk.Label(password_window,text="Enter a password with at least 4 characters.",font=("Arial", 9),bg="#0F172A",fg="#CBD5E1").pack(pady=5) #Create password instructions
+        new_password = tk.Entry(password_window,show="*",width=25,bg="#F8FAFC",fg="#0F172A",relief="flat") #Create new password entry
+        new_password.pack(pady=8) #Place password entry
+        confirm_password = tk.Entry(password_window,show="*",width=25,bg="#F8FAFC",fg="#0F172A",relief="flat") #Create confirmation entry
+        confirm_password.pack(pady=8) #Place confirmation entry
+        def save_password():
+            password = new_password.get() #Get new password
+            confirmation = confirm_password.get() #Get confirmation
+            if len(password) < 4: #Check password length
+                messagebox.showerror("Invalid Password","Password must be at least 4 characters long.")
+                return
+            if password != confirmation: #Check passwords match
+                messagebox.showerror("Password Error","The passwords do not match.")
+                return
+            try:
+                with open("password.txt", "w") as file:
+                    file.write(self.hash_password(password)) #Save the password hash
+                messagebox.showinfo("Success","Password saved successfully.") #Tell the user the password was saved
+                password_window.destroy() #Close setup window
+            except OSError:
+                messagebox.showerror("Error","Unable to save the password.") #Tell the user the password could not be saved
+        tk.Button(password_window,text="Save Password",width=15,command=save_password,bg="#10B981",fg="white",activebackground="#059669",relief="flat",font=("Arial", 9, "bold"),cursor="hand2").pack(pady=10) #Create save password button
