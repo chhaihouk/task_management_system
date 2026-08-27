@@ -80,43 +80,21 @@ class TaskManager: #This class controls the tasks and the main task functions
             task_list.insert(tk.END,task_text) #Add the task to the Listbox
      # COMPLETE TASK
     def complete_task(self):
-            # Get the task selected by the user.
-            selected = task_list.curselection()
-
+            selected = task_list.curselection() #Get the task selected by the user
             # Check if the user selected a task.
             if not selected:
-                messagebox.showerror(
-                    "Error",
-                    "Please select a task."
-                )
+                messagebox.showerror("Error","Please select a task.")
                 return
-
-            # Get the selected Task object from the list.
-            task = self.tasks[selected[0]]
-
+            task = self.tasks[selected[0]] #Get the selected Task object from the list
             # Check if the task is already completed.
             if task.completed:
-                messagebox.showinfo(
-                    "Information",
-                    "This task is already completed."
-                )
+                messagebox.showinfo("Information","This task is already completed.")
                 return
-
-            # Mark the task as completed.
-            task.completed = True
-
-            # Save the updated task list.
-            self.save_tasks()
-
-            # Refresh the task list.
-            self.view_tasks()
-
+            task.completed = True #Mark the task as completed
+            self.save_tasks() #Save the updated task list
+            self.view_tasks() #Refresh the task list
             # Tell the user the task was completed.
-            messagebox.showinfo(
-                "Success",
-                "Task marked as completed!"
-            )
-
+            messagebox.showinfo("Success","Task marked as completed!")
     # DELETE TASK
     def delete_task(self):
         # Get the task selected by the user.
