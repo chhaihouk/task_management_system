@@ -117,13 +117,8 @@ class TaskManager: #This class controls the tasks and the main task functions
         # Try to save all tasks to the text file.
         try:
             with open("tasks.txt", "w") as file:
-
-                # Go through each task in the task list.
-                for task in self.tasks:
-
-                    # Convert the completed status into 1 or 0.
-                    completed = "1" if task.completed else "0"
-
+                for task in self.tasks: #Go through each task in the task list
+                    completed = "1" if task.completed else "0" #Convert the completed status into 1 or 0
                     # Write the task information to the file.
                     file.write(
                         f"{task.name}|"
@@ -131,13 +126,9 @@ class TaskManager: #This class controls the tasks and the main task functions
                         f"{task.due_date}|"
                         f"{completed}\n"
                     )
-
         except OSError:
             # Show an error if the file cannot be saved.
-            messagebox.showerror(
-                "Save Error",
-                "The tasks could not be saved."
-            )
+            messagebox.showerror("Save Error","The tasks could not be saved.")
     # LOAD TASKS
     def load_tasks(self):
         # Try to open the file containing saved tasks.
