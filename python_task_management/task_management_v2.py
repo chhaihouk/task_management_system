@@ -1,35 +1,15 @@
 # TASK MANAGEMENT SYSTEM - VERSION 2
-# Import tkinter so we can create the graphical user interface (GUI).
-import tkinter as tk
-
-# Import messagebox so the program can show pop-up messages and errors.
-from tkinter import messagebox
-
-# Import datetime so we can check whether the user entered a valid date.
-from datetime import datetime
+import tkinter as tk #Import tkinter so we can create the graphical user interface (GUI)
+from tkinter import messagebox #Import messagebox so the program can show pop-up messages and errors
+from datetime import datetime #Import datetime so we can check whether the user entered a valid date
 from unicodedata import name
-
 # TASK CLASS
-
-# Create a class called Task to represent one individual task.
-class Task:
-
-    # This function runs whenever a new Task object is created.
-    def __init__(self, name, priority, due_date, completed=False):
-
-        # Store the task name inside the Task object.
-        self.name = name
-
-        # Store the priority of the task inside the Task object.
-        self.priority = priority
-
-        # Store the due date of the task inside the Task object.
-        self.due_date = due_date
-
-        # Store whether the task is completed.
-        # New tasks are not completed by default.
-        self.completed = completed
-
+class Task: #Create a class called Task to represent one individual task
+    def __init__(self, name, priority, due_date, completed=False): #This function runs whenever a new Task object is created
+        self.name = name #Store the task name inside the Task object
+        self.priority = priority #Store the priority of the task inside the Task object
+        self.due_date = due_date #Store the due date of the task inside the Task object
+        self.completed = completed #Store whether the task is completed #New tasks are not completed by default
 # TASK MANAGER CLASS
 
 # Create a class called TaskManager.
