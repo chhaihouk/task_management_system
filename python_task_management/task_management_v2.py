@@ -134,47 +134,22 @@ class TaskManager: #This class controls the tasks and the main task functions
         # Try to open the file containing saved tasks.
         try:
             with open("tasks.txt", "r") as file:
-
-                # Read each saved task one line at a time.
-                for line in file:
-
-                    # Remove extra spaces and split the data.
-                    parts = line.strip().split("|")
-
-                    # Check that the saved data has four parts.
-                    if len(parts) != 4:
+                for line in file: #Read each saved task one line at a time
+                    parts = line.strip().split("|") #Remove extra spaces and split the data
+                    if len(parts) != 4: #Check that the saved data has four parts
                         continue
-
-                    # Store each part of the saved task.
-                    name, priority, due_date, completed = parts
-
-                    # Check that the saved priority is valid.
-                    if priority not in ["High", "Medium", "Low"]:
+                    name, priority, due_date, completed = parts #Store each part of the saved task
+                    if priority not in ["High", "Medium", "Low"]: #Check that the saved priority is valid
                         continue
-
-                    # Check that the completion value is valid.
-                    if completed not in ["0", "1"]:
+                    if completed not in ["0", "1"]: #Check that the completion value is valid
                         continue
-
-                    # Create the Task object and add it to the list.
-                    self.tasks.append(
-                        Task(
-                            name,
-                            priority,
-                            due_date,
-                            completed == "1"
-                        )
-                    )
-
+                    self.tasks.append(Task(name,priority,due_date,completed == "1")) #Create the Task object and add it to the list
         except FileNotFoundError:
             # No saved task file exists yet.
             pass
         except OSError:
             # Tell the user if the task file cannot be opened.
-            messagebox.showerror(
-                "Load Error",
-                "The saved tasks could not be loaded."
-            )
+            messagebox.showerror("Load Error","The saved tasks could not be loaded.")
 # TKINTER GUI
 
 # Create the main Tkinter window.
