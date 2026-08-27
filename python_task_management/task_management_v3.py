@@ -17,3 +17,10 @@ class TaskManager:
     def __init__(self):
         self.tasks = [] #Create an empty list for tasks
         self.load_tasks() #Load saved tasks
+    # Validate the task name.
+    def validate_name(self, name):
+        if name == "": #Check if the name is empty
+            return False, "Task name cannot be empty."
+        if len(name) < 3: #Check if the name is too short
+            return False, "Task name must be at least 3 characters long."
+        return True, "" #Return valid
