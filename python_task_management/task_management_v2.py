@@ -171,82 +171,16 @@ name_entry = tk.Entry(input_frame,width=30) #Create a text box where the user ca
 name_entry.grid(row=0,column=1,padx=5) #Place the task name text box beside its label
 tk.Label(input_frame,text="(At least 3 characters)").grid(row=0,column=2,padx=5) #Add a small instruction showing the user what to enter
 # PRIORITY
-# Create a label for the priority selection.
-tk.Label(
-    input_frame,
-    text="Priority:"
-).grid(
-    row=1,
-    column=0,
-    padx=5,
-    pady=5
-)
-
-
-# Create a StringVar to store the selected priority.
-# The default priority is Medium.
-priority_var = tk.StringVar(value="Medium")
-
-
-# Create a dropdown menu containing the three priority options.
-tk.OptionMenu(
-    input_frame,
-    priority_var,
-    "High",
-    "Medium",
-    "Low"
-
-# Place the dropdown menu beside the priority label.
-).grid(
-    row=1,
-    column=1
-)
-
+tk.Label(input_frame,text="Priority:").grid(row=1,column=0,padx=5,pady=5) #Create a label for the priority selection
+priority_var = tk.StringVar(value="Medium") #Create a StringVar to store the selected priority #The default priority is Medium
+tk.OptionMenu(input_frame,priority_var,"High","Medium","Low").grid(row=1,column=1) #Create a dropdown menu containing the three priority options #Place the dropdown menu beside the priority label
 # DUE DATE
-
-# Create a label for the due date input.
-tk.Label(
-    input_frame,
-    text="Due Date:"
-).grid(
-    row=2,
-    column=0,
-    padx=5,
-    pady=5
-)
-
-# Create a text box where the user enters the due date.
-date_entry = tk.Entry(
-    input_frame,
-    width=30
-)
-
-# Place the date input box beside its label.
-date_entry.grid(
-    row=2,
-    column=1,
-    padx=5
-)
-# Show an example of the required date format.
-tk.Label(
-    input_frame,
-    text="Example: 25/08/2026"
-).grid(
-    row=2,
-    column=2,
-    padx=5
-)
-# Tell the user which date format to use.
-tk.Label(
-    input_frame,
-    text="Example: 25/08/2026"
-).grid(
-    row=2,
-    column=2,
-    padx=5
-)
+tk.Label(input_frame,text="Due Date:").grid(row=2,column=0,padx=5,pady=5) #Create a label for the due date input
+date_entry = tk.Entry(input_frame,width=30) #Create a text box where the user enters the due date
+date_entry.grid(row=2,column=1,padx=5) #Place the date input box beside its label
+tk.Label(input_frame,text="Example: 25/08/2026").grid(row=2,column=2,padx=5) #Show an example of the required date format
+tk.Label(input_frame,text="Example: 25/08/2026").grid(row=2,column=2,padx=5) #Tell the user which date format to use
 # TASK LIST
-
 # Create a label above the task list.
 tk.Label(
     window,
