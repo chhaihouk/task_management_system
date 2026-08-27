@@ -369,3 +369,15 @@ class TaskManagementApp:
             messagebox.showinfo("Success",message) #Show success message
         else:
             messagebox.showerror("Invalid Task",message) #Show validation error
+    # COMPLETE TASK
+    def complete_task(self):
+        index = self.get_selected_index() #Get selected task
+        if index == -1:
+            messagebox.showerror("Error","Please select a task to complete.") #Show error
+            return #Stop the function
+        success, message = self.manager.complete_task(index) #Complete the task
+        if success:
+            self.refresh_tasks() #Refresh the table
+            messagebox.showinfo("Success",message) #Show success message
+        else:
+            messagebox.showinfo("Information",message) #Show information message
