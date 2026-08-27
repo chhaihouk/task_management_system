@@ -381,3 +381,17 @@ class TaskManagementApp:
             messagebox.showinfo("Success",message) #Show success message
         else:
             messagebox.showinfo("Information",message) #Show information message
+    # DELETE TASK
+    def delete_task(self):
+        index = self.get_selected_index() #Get selected task
+        if index == -1:
+            messagebox.showerror("Error","Please select a task to delete.") #Show error
+            return #Stop the function
+        task_name = self.manager.tasks[index].name #Get task name
+        confirm = messagebox.askyesno("Delete Task",f"Are you sure you want to delete '{task_name}'?") #Ask for deletion confirmation
+        if confirm:
+            success, message = self.manager.delete_task(index) #Delete the task
+            if success:
+                self.clear_fields() #Clear input fields
+                self.refresh_tasks() #Refresh the table
+                messagebox.showinfo("Success",message) #Show success message
