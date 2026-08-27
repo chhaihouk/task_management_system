@@ -213,3 +213,13 @@ class LoginWindow:
             self.window.destroy() #Close login window
         else:
             self.status_label.config(text="Incorrect password.") #Display login error
+# MAIN APPLICATION CLASS
+class TaskManagementApp:
+    def __init__(self, window):
+        self.window = window #Store the main window
+        self.manager = TaskManager() #Create the task manager
+        self.displayed_tasks = [] #Store currently displayed tasks
+        self.setup_window() #Set up the window
+        self.create_widgets() #Create GUI widgets
+        self.refresh_tasks() #Display tasks
+        self.name_entry.focus() #Focus the task name field
