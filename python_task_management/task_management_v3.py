@@ -30,3 +30,12 @@ class TaskManager:
         if priority not in valid_priorities: #Check if priority is valid
             return False, "Please select High, Medium, or Low priority."
         return True, "" #Return valid
+    # Validate the task date.
+    def validate_date(self, due_date):
+        try:
+            entered_date = datetime.strptime(due_date,"%d/%m/%Y").date() #Convert the date into a date object
+        except ValueError:
+            return False, "Please select a valid date."
+        if entered_date < date.today(): #Check if the date is in the past
+            return False, "The due date cannot be in the past."
+        return True, "" #Return valid
