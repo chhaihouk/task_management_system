@@ -60,3 +60,16 @@ class TaskManager:
         self.tasks.append(new_task) #Add task to the list
         self.save_tasks() #Save the updated tasks
         return True, "Task added successfully."
+    # Edit an existing task.
+    def edit_task(self, index, name, priority, due_date):
+        if index < 0 or index >= len(self.tasks): #Check the selected index
+            return False, "Please select a valid task."
+        valid, message = self.validate_task(name,priority,due_date) #Validate the new information
+        if not valid:
+            return False, message
+        task = self.tasks[index] #Get the selected task
+        task.name = name #Update the task name
+        task.priority = priority #Update the priority
+        task.due_date = due_date #Update the due date
+        self.save_tasks() #Save the changes
+        return True, "Task updated successfully."
