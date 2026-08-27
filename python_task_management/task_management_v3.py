@@ -337,3 +337,22 @@ class TaskManagementApp:
             messagebox.showinfo("Success",message) #Show success message
         else:
             messagebox.showerror("Invalid Task",message) #Show validation error
+    # EDIT TASK
+    def edit_task(self, event=None):
+        index = self.get_selected_index() #Get selected task
+        if index == -1:
+            messagebox.showerror("Error","Please select a task to edit.") #Show error
+            return #Stop the function
+        task = self.manager.tasks[index] #Get selected task
+        self.name_entry.delete(0,tk.END) #Clear task name
+        self.name_entry.insert(0,task.name) #Insert existing task name
+        self.priority_var.set(task.priority) #Set existing priority
+        self.date_entry.set_date(datetime.strptime(task.due_date,"%d/%m/%Y")) #Set existing date
+        edit_window = tk.Toplevel(self.window) #Create edit popup
+        edit_window.title("Edit Task") #Set popup title
+        edit_window.geometry("350x180") #Set popup size
+        edit_window.resizable(False,False) #Prevent resizing
+        edit_window.configure(bg="#0F172A") #Set popup colour
+        tk.Label(edit_window,text="Edit the task using the fields above.",font=("Arial", 10),bg="#0F172A",fg="#F8FAFC").pack(pady=20) #Create popup message
+        tk.Button(edit_window,text="Save Changes",width=15,command=lambda: self.save_edit(index,edit_window),bg="#10B981",fg="white",activebackground="#059669",relief="flat",font=("Arial", 10, "bold"),cursor="hand2").pack(pady=5) #Create save button
+        tk.Button(edit_window,text="Cancel",width=15,command=edit_window.destroy,bg="#475569",fg="white",activebackground="#334155",relief="flat",font=("Arial", 10, "bold"),cursor="hand2").pack(pady=5) #Create cancel button
