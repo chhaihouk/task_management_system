@@ -39,3 +39,15 @@ class TaskManager:
         if entered_date < date.today(): #Check if the date is in the past
             return False, "The due date cannot be in the past."
         return True, "" #Return valid
+    # Validate all task information.
+    def validate_task(self, name, priority, due_date):
+        valid, message = self.validate_name(name) #Validate the name
+        if not valid:
+            return False, message
+        valid, message = self.validate_priority(priority) #Validate priority
+        if not valid:
+            return False, message
+        valid, message = self.validate_date(due_date) #Validate date
+        if not valid:
+            return False, message
+        return True, "" #Return valid
