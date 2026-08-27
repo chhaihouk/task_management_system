@@ -11,20 +11,11 @@ class Task: #Create a class called Task to represent one individual task
         self.due_date = due_date #Store the due date of the task inside the Task object
         self.completed = completed #Store whether the task is completed #New tasks are not completed by default
 # TASK MANAGER CLASS
-
 # Create a class called TaskManager.
-# This class controls the tasks and the main task functions.
-class TaskManager:
-
-    # This function runs when the TaskManager is created.
-    def __init__(self):
-
-        # Create an empty list to store all Task objects.
-        self.tasks = []
-
-        # Load any tasks that were previously saved in the text file.
-        self.load_tasks()
-
+class TaskManager: #This class controls the tasks and the main task functions
+    def __init__(self): #This function runs when the TaskManager is created
+        self.tasks = [] #Create an empty list to store all Task objects
+        self.load_tasks() #Load any tasks that were previously saved in the text file
     # ADD TASK
 
     # This function adds a new task to the task list.
