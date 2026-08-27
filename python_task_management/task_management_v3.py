@@ -12,3 +12,8 @@ class Task:
         self.priority = priority #Store the task priority
         self.due_date = due_date #Store the task due date
         self.completed = completed #Store whether the task is completed
+# TASK MANAGER CLASS
+class TaskManager:
+    def __init__(self):
+        self.tasks = [] #Create an empty list for tasks
+        self.load_tasks() #Load saved tasks
