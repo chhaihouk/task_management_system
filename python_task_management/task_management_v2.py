@@ -204,21 +204,7 @@ task_manager = TaskManager() #This also loads any previously saved tasks
 # ADD TASK BUTTON
 tk.Button(button_frame,text="Add Task",width=15,command=task_manager.add_task).grid(row=0,column=0,padx=8,pady=5) #Create the Add Task button
 # REFRESH BUTTON
-
-# Create the Refresh button.
-tk.Button(
-    button_frame,
-    text="Refresh",
-    width=15,
-    command=task_manager.view_tasks
-).grid(
-    row=0,
-    column=1,
-    padx=8,
-    pady=5
-)
-
-
+tk.Button(button_frame,text="Refresh",width=15,command=task_manager.view_tasks).grid(row=0,column=1,padx=8,pady=5) #Create the Refresh button
 # COMPLETE BUTTON
 
 # Create the Complete button.
