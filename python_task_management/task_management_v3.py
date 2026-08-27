@@ -105,3 +105,33 @@ class TaskManager:
             return True
         except OSError:
             return False
+    # Load saved tasks.
+    def load_tasks(self):
+        try:
+            with open("tasks.txt", "r") as file:
+                for line in file:
+                    line = line.strip() #Remove extra whitespace
+                    if not line: #Skip empty lines
+                        continue
+                    parts = line.split("|") #Split saved information
+                    if len(parts) != 4: #Check the correct number of values
+                        continue
+                    name, priority, due_date, completed = parts
+                    if priority not in ["High", "Medium", "Low"]: #Check priority
+                        continue
+                    if completed not in ["0", "1"]: #Check completion value
+                        continue
+                    if name.strip() == "": #Check task name
+                        continue
+                    self.tasks.append(
+                        Task(
+                            name,
+                            priority,
+                            due_date,
+                            completed == "1"
+                        )
+                    ) #Create and store the saved task
+        except FileNotFoundError:
+            pass #Start with no tasks if the file does not exist
+        except OSError:
+            pass #Continue if the file cannot be opened
