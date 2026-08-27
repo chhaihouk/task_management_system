@@ -181,61 +181,20 @@ date_entry.grid(row=2,column=1,padx=5) #Place the date input box beside its labe
 tk.Label(input_frame,text="Example: 25/08/2026").grid(row=2,column=2,padx=5) #Show an example of the required date format
 tk.Label(input_frame,text="Example: 25/08/2026").grid(row=2,column=2,padx=5) #Tell the user which date format to use
 # TASK LIST
-# Create a label above the task list.
-tk.Label(
-    window,
-    text="Your Tasks",
-    font=("Arial", 14, "bold")
-).pack(pady=(5, 0))
-
-# Create a frame to hold the task list and scrollbar.
-task_list_frame = tk.Frame(window)
-
-# Place the frame inside the main window.
-task_list_frame.pack(pady=10)
-
-# Create a Listbox to display all of the tasks.
-task_list = tk.Listbox(
-    task_list_frame,
-
-    # Set the width of the Listbox.
-    width=100,
-
-    # Set the number of visible rows.
-    height=14,
-
-    # Make the task text easier to read.
-    font=("Arial", 11),
-
-    # Make the selected task easier to see.
-    selectbackground="lightblue",
-
-    # Make the selected task text easy to read.
-    selectforeground="black"
+tk.Label(window,text="Your Tasks",font=("Arial", 14, "bold")).pack(pady=(5, 0)) #Create a label above the task list
+task_list_frame = tk.Frame(window) #Create a frame to hold the task list and scrollbar
+task_list_frame.pack(pady=10) #Place the frame inside the main window 
+task_list = tk.Listbox(task_list_frame, #Create a Listbox to display all of the tasks
+    width=100, #Set the width of the Listbox
+    height=14, #Set the number of visible rows
+    font=("Arial", 11), #Make the task text easier to read
+    selectbackground="lightblue", #Make the selected task easier to see
+    selectforeground="black" #Make the selected task text easy to read
 )
-# Place the Listbox on the left side of the frame.
-task_list.pack(
-    side=tk.LEFT
-)
-
-# Create a scrollbar for the task list.
-task_scrollbar = tk.Scrollbar(
-    task_list_frame,
-
-    # Make the scrollbar move the Listbox vertically.
-    command=task_list.yview
-)
-
-# Place the scrollbar beside the Listbox.
-task_scrollbar.pack(
-    side=tk.RIGHT,
-    fill=tk.Y
-)
-
-# Connect the Listbox to the scrollbar.
-task_list.config(
-    yscrollcommand=task_scrollbar.set
-)
+task_list.pack(side=tk.LEFT) #Place the Listbox on the left side of the frame
+task_scrollbar = tk.Scrollbar(task_list_frame,command=task_list.yview) #Create a scrollbar for the task list #Make the scrollbar move the Listbox vertically
+task_scrollbar.pack(side=tk.RIGHT,fill=tk.Y) #Place the scrollbar beside the Listbox
+task_list.config(yscrollcommand=task_scrollbar.set) #Connect the Listbox to the scrollbar
 # BUTTONS
 
 # Create a label above the buttons.
