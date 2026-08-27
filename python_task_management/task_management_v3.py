@@ -24,3 +24,9 @@ class TaskManager:
         if len(name) < 3: #Check if the name is too short
             return False, "Task name must be at least 3 characters long."
         return True, "" #Return valid
+    # Validate the task priority.
+    def validate_priority(self, priority):
+        valid_priorities = ["High", "Medium", "Low"] #Create valid priorities
+        if priority not in valid_priorities: #Check if priority is valid
+            return False, "Please select High, Medium, or Low priority."
+        return True, "" #Return valid
