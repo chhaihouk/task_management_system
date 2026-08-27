@@ -306,3 +306,22 @@ class TaskManagementApp:
         self.task_table.bind("<Double-1>",self.edit_task) #Allow double-click editing
         self.task_count_label = tk.Label(self.window,text="Tasks: 0",font=("Arial", 10, "bold"),bg="#0F172A",fg="#94A3B8") #Create task counter
         self.task_count_label.pack(pady=(0, 10)) #Place task counter
+    # GET SELECTED TASK
+    def get_selected_index(self):
+        selected = self.task_table.selection() #Get selected row
+        if not selected: #Check if a row was selected
+            return -1
+        values = self.task_table.item(selected[0],"values") #Get row information
+        if not values: #Check if row has information
+            return -1
+        task_name = values[1] #Get task name
+        priority = values[2] #Get priority
+        due_date = values[3] #Get due date
+        for index, task in enumerate(self.manager.tasks):
+            if (
+                task.name == task_name
+                and task.priority == priority
+                and task.due_date == due_date
+            ): #Find matching task
+                return index
+        return -1 #Return -1 if no task was found
