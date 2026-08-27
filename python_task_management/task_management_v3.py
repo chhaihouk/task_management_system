@@ -237,3 +237,72 @@ class TaskManagementApp:
         style.map("Treeview",background=[("selected", "#0EA5E9")],foreground=[("selected", "white")]) #Style selected rows
         style.configure("TCombobox",fieldbackground="#F8FAFC",background="#F8FAFC",foreground="#0F172A",padding=5) #Style dropdown menus
         style.configure("Vertical.TScrollbar",background="#334155",troughcolor="#0F172A",arrowcolor="white") #Style scrollbar
+    # Create the GUI.
+    def create_widgets(self):
+        title = tk.Label(self.window,text="TASK MANAGEMENT SYSTEM",font=("Arial", 24, "bold"),bg="#0F172A",fg="#38BDF8") #Create the main title
+        title.pack(pady=(15, 5)) #Place the title
+        subtitle = tk.Label(self.window,text="Plan, organise and track your tasks",font=("Arial", 11),bg="#0F172A",fg="#CBD5E1") #Create the subtitle
+        subtitle.pack(pady=(0, 15)) #Place the subtitle
+        input_frame = tk.LabelFrame(self.window,text="Task Information",font=("Arial", 11, "bold"),padx=15,pady=10,bg="#1E293B",fg="#38BDF8") #Create task information frame
+        input_frame.pack(fill="x",padx=20,pady=5) #Place task information frame
+        tk.Label(input_frame,text="Task Name:",font=("Arial", 10, "bold"),bg="#1E293B",fg="#F8FAFC").grid(row=0,column=0,padx=5,pady=8,sticky="w") #Create task name label
+        self.name_entry = tk.Entry(input_frame,width=35,font=("Arial", 10),bg="#F8FAFC",fg="#0F172A",insertbackground="#0F172A",relief="flat") #Create task name entry
+        self.name_entry.grid(row=0,column=1,padx=5,pady=8) #Place task name entry
+        tk.Label(input_frame,text="Priority:",font=("Arial", 10, "bold"),bg="#1E293B",fg="#F8FAFC").grid(row=0,column=2,padx=5,pady=8) #Create priority label
+        self.priority_var = tk.StringVar(value="Medium") #Create priority variable
+        self.priority_menu = ttk.Combobox(input_frame,textvariable=self.priority_var,values=["High", "Medium", "Low"],state="readonly",width=15) #Create priority dropdown
+        self.priority_menu.grid(row=0,column=3,padx=5,pady=8) #Place priority dropdown
+        tk.Label(input_frame,text="Due Date:",font=("Arial", 10, "bold"),bg="#1E293B",fg="#F8FAFC").grid(row=1,column=0,padx=5,pady=8,sticky="w") #Create due date label
+        # DateEntry provides a calendar for easier date selection.
+        self.date_entry = DateEntry(input_frame,width=32,date_pattern="dd/mm/yyyy",font=("Arial", 10),background="#2563EB",foreground="white",borderwidth=1) #Create the date picker
+        self.date_entry.grid(row=1,column=1,padx=5,pady=8) #Place the date picker
+        tk.Label(input_frame,text="Use the calendar",font=("Arial", 9),bg="#1E293B",fg="#94A3B8").grid(row=1,column=2,padx=5,pady=8) #Create date instructions
+        button_frame = tk.Frame(self.window,bg="#0F172A") #Create button frame
+        button_frame.pack(pady=12) #Place button frame
+        tk.Button(button_frame,text="Add Task",width=14,command=self.add_task,bg="#2563EB",fg="white",activebackground="#1D4ED8",relief="flat",font=("Arial", 10, "bold"),cursor="hand2").grid(row=0,column=0,padx=5) #Create Add Task button
+        tk.Button(button_frame,text="Edit Task",width=14,command=self.edit_task,bg="#0EA5E9",fg="white",activebackground="#0284C7",relief="flat",font=("Arial", 10, "bold"),cursor="hand2").grid(row=0,column=1,padx=5) #Create Edit Task button
+        tk.Button(button_frame,text="Complete",width=14,command=self.complete_task,bg="#10B981",fg="white",activebackground="#059669",relief="flat",font=("Arial", 10, "bold"),cursor="hand2").grid(row=0,column=2,padx=5) #Create Complete button
+        tk.Button(button_frame,text="Delete",width=14,command=self.delete_task,bg="#EF4444",fg="white",activebackground="#DC2626",relief="flat",font=("Arial", 10, "bold"),cursor="hand2").grid(row=0,column=3,padx=5) #Create Delete button
+        tk.Button(button_frame,text="Clear Fields",width=14,command=self.clear_fields,bg="#475569",fg="white",activebackground="#334155",relief="flat",font=("Arial", 10, "bold"),cursor="hand2").grid(row=0,column=4,padx=5) #Create Clear button
+        filter_frame = tk.LabelFrame(self.window,text="Search and Filter",font=("Arial", 11, "bold"),padx=10,pady=8,bg="#1E293B",fg="#38BDF8") #Create filter frame
+        filter_frame.pack(fill="x",padx=20,pady=5) #Place filter frame
+        tk.Label(filter_frame,text="Search:",bg="#1E293B",fg="#F8FAFC").grid(row=0,column=0,padx=5) #Create search label
+        self.search_var = tk.StringVar() #Create search variable
+        self.search_entry = tk.Entry(filter_frame,textvariable=self.search_var,width=25,bg="#F8FAFC",fg="#0F172A",insertbackground="#0F172A",relief="flat") #Create search entry
+        self.search_entry.grid(row=0,column=1,padx=5) #Place search entry
+        tk.Label(filter_frame,text="Priority:",bg="#1E293B",fg="#F8FAFC").grid(row=0,column=2,padx=5) #Create priority filter label
+        self.filter_priority_var = tk.StringVar(value="All") #Create priority filter variable
+        self.filter_priority = ttk.Combobox(filter_frame,textvariable=self.filter_priority_var,values=["All", "High", "Medium", "Low"],state="readonly",width=12) #Create priority filter
+        self.filter_priority.grid(row=0,column=3,padx=5) #Place priority filter
+        tk.Label(filter_frame,text="Status:",bg="#1E293B",fg="#F8FAFC").grid(row=0,column=4,padx=5) #Create status label
+        self.filter_status_var = tk.StringVar(value="All") #Create status variable
+        self.filter_status = ttk.Combobox(filter_frame,textvariable=self.filter_status_var,values=["All","Completed","Not Completed"],state="readonly",width=15) #Create status filter
+        self.filter_status.grid(row=0,column=5,padx=5) #Place status filter
+        tk.Label(filter_frame,text="Sort:",bg="#1E293B",fg="#F8FAFC").grid(row=0,column=6,padx=5) #Create sort label
+        self.sort_var = tk.StringVar(value="Default") #Create sort variable
+        self.sort_menu = ttk.Combobox(filter_frame,textvariable=self.sort_var,values=["Default","Priority","Due Date","Task Name"],state="readonly",width=15) #Create sort dropdown
+        self.sort_menu.grid(row=0,column=7,padx=5) #Place sort dropdown
+        tk.Button(filter_frame,text="Apply",width=10,command=self.refresh_tasks,bg="#2563EB",fg="white",activebackground="#1D4ED8",relief="flat",font=("Arial", 9, "bold"),cursor="hand2").grid(row=0,column=8,padx=5) #Create Apply button
+        tk.Button(filter_frame,text="Clear",width=10,command=self.clear_filters,bg="#475569",fg="white",activebackground="#334155",relief="flat",font=("Arial", 9, "bold"),cursor="hand2").grid(row=0,column=9,padx=5) #Create Clear button
+        table_frame = tk.Frame(self.window,bg="#0F172A") #Create table frame
+        table_frame.pack(fill="both",expand=True,padx=20,pady=10) #Place table frame
+        self.task_table = ttk.Treeview(table_frame,columns=("number","name","priority","due_date","status"),show="headings",selectmode="browse") #Create task table
+        self.task_table.heading("number",text="#") #Set number heading
+        self.task_table.heading("name",text="Task Name") #Set name heading
+        self.task_table.heading("priority",text="Priority") #Set priority heading
+        self.task_table.heading("due_date",text="Due Date") #Set date heading
+        self.task_table.heading("status",text="Status") #Set status heading
+        self.task_table.column("number",width=50,anchor="center") #Set number width
+        self.task_table.column("name",width=350) #Set name width
+        self.task_table.column("priority",width=120,anchor="center") #Set priority width
+        self.task_table.column("due_date",width=130,anchor="center") #Set date width
+        self.task_table.column("status",width=150,anchor="center") #Set status width
+        self.task_table.tag_configure("even",background="#1E293B",foreground="#F8FAFC") #Set even row colour
+        self.task_table.tag_configure("odd",background="#243247",foreground="#F8FAFC") #Set odd row colour
+        scrollbar = ttk.Scrollbar(table_frame,orient="vertical",command=self.task_table.yview) #Create scrollbar
+        self.task_table.configure(yscrollcommand=scrollbar.set) #Connect scrollbar to table
+        self.task_table.pack(side="left",fill="both",expand=True) #Place table
+        scrollbar.pack(side="right",fill="y") #Place scrollbar
+        self.task_table.bind("<Double-1>",self.edit_task) #Allow double-click editing
+        self.task_count_label = tk.Label(self.window,text="Tasks: 0",font=("Arial", 10, "bold"),bg="#0F172A",fg="#94A3B8") #Create task counter
+        self.task_count_label.pack(pady=(0, 10)) #Place task counter
