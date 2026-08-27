@@ -156,69 +156,21 @@ window.geometry("850x550") #Set the starting size of the window
 window.resizable(True, True) #Allow the window to be resized by the user
 window.minsize(700, 500) #Set a minimum size so the GUI does not become too small
 # TITLE
-
 # Create a large title label for the program.
 tk.Label(
     window,
-
-    # Text displayed by the label.
-    text="TASK MANAGEMENT SYSTEM",
-
-    # Set the font to Arial, size 20, and bold.
-    font=("Arial", 20, "bold")
-
-# Add the label to the window with 15 pixels of vertical spacing.
-).pack(pady=15)
-
-
+    text="TASK MANAGEMENT SYSTEM", #Text displayed by the label
+    font=("Arial", 20, "bold") #Set the font to Arial, size 20, and bold
+).pack(pady=15) #Add the label to the window with 15 pixels of vertical spacing
 # INPUT FRAME
-
-
-# Create a frame to hold the input fields.
-input_frame = tk.Frame(window)
-
-
-# Place the input frame inside the main window.
-input_frame.pack()
-
-
+input_frame = tk.Frame(window) #Create a frame to hold the input fields
+input_frame.pack() #Place the input frame inside the main window
 # TASK NAME
-
-# Create a label telling the user what the first input is for.
-tk.Label(
-    input_frame,
-    text="Task Name:"
-).grid(
-    row=0,
-    column=0,
-    padx=5,
-    pady=5
-)
-
-# Create a text box where the user can enter a task name.
-name_entry = tk.Entry(
-    input_frame,
-    width=30
-)
-
-# Place the task name text box beside its label.
-name_entry.grid(
-    row=0,
-    column=1,
-    padx=5
-)
-
-# Add a small instruction showing the user what to enter.
-tk.Label(
-    input_frame,
-    text="(At least 3 characters)"
-).grid(
-    row=0,
-    column=2,
-    padx=5
-)
+tk.Label(input_frame,text="Task Name:").grid(row=0,column=0,padx=5,pady=5) #Create a label telling the user what the first input is for
+name_entry = tk.Entry(input_frame,width=30) #Create a text box where the user can enter a task name
+name_entry.grid(row=0,column=1,padx=5) #Place the task name text box beside its label
+tk.Label(input_frame,text="(At least 3 characters)").grid(row=0,column=2,padx=5) #Add a small instruction showing the user what to enter
 # PRIORITY
-
 # Create a label for the priority selection.
 tk.Label(
     input_frame,
