@@ -325,3 +325,15 @@ class TaskManagementApp:
             ): #Find matching task
                 return index
         return -1 #Return -1 if no task was found
+    # ADD TASK
+    def add_task(self):
+        name = self.name_entry.get().strip() #Get task name
+        priority = self.priority_var.get() #Get priority
+        due_date = self.date_entry.get() #Get selected date
+        success, message = self.manager.add_task(name,priority,due_date) #Add the task
+        if success:
+            self.clear_fields() #Clear input fields
+            self.refresh_tasks() #Refresh the table
+            messagebox.showinfo("Success",message) #Show success message
+        else:
+            messagebox.showerror("Invalid Task",message) #Show validation error
