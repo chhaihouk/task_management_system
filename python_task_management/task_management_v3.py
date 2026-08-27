@@ -445,3 +445,9 @@ class TaskManagementApp:
         if sort_option == "Due Date":
             return sorted(tasks,key=lambda task:datetime.strptime(task.due_date,"%d/%m/%Y")) #Sort by due date
         return tasks #Keep original order
+    # CLEAR FIELDS
+    def clear_fields(self):
+        self.name_entry.delete(0, tk.END) #Remove the task name
+        self.priority_var.set("Medium") #Reset the priority
+        self.date_entry.set_date(date.today()) #Reset the date picker
+        self.name_entry.focus() #Put the cursor back into the task name field
