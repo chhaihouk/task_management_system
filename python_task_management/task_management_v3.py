@@ -434,3 +434,14 @@ class TaskManagementApp:
             row_tag = ("even"if number % 2 == 0 else "odd") #Choose alternating row colour
             self.task_table.insert("",tk.END,values=(number,task.name,task.priority,task.due_date,status),tags=(row_tag,)) #Add task to table
         self.task_count_label.config(text=(f"Showing {len(filtered_tasks)} "f"of {len(self.manager.tasks)} tasks")) #Update task counter
+    # SORT TASKS
+    def sort_tasks(self, tasks):
+        sort_option = self.sort_var.get() #Get selected sort option
+        if sort_option == "Task Name":
+            return sorted(tasks,key=lambda task: task.name.lower()) #Sort alphabetically
+        if sort_option == "Priority":
+            priority_order = {"High": 1,"Medium": 2,"Low": 3} #Create priority order
+            return sorted(tasks,key=lambda task:priority_order.get(task.priority,4)) #Sort by priority
+        if sort_option == "Due Date":
+            return sorted(tasks,key=lambda task:datetime.strptime(task.due_date,"%d/%m/%Y")) #Sort by due date
+        return tasks #Keep original order
