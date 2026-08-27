@@ -135,3 +135,13 @@ class TaskManager:
             pass #Start with no tasks if the file does not exist
         except OSError:
             pass #Continue if the file cannot be opened
+# LOGIN SYSTEM
+class LoginWindow:
+    def __init__(self, window):
+        self.window = window #Store the login window
+        self.logged_in = False #Track whether login succeeds
+        self.window.title("Task Management System - Login") #Set window title
+        self.window.geometry("430x330") #Set window size
+        self.window.resizable(False, False) #Prevent resizing
+        self.window.configure(bg="#0F172A") #Set background colour
+        self.create_login_widgets() #Create login widgets
