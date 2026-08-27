@@ -90,3 +90,18 @@ class TaskManager:
         self.tasks.pop(index) #Remove the selected task
         self.save_tasks() #Save the changes
         return True, "Task deleted successfully."
+    # Save all tasks.
+    def save_tasks(self):
+        try:
+            with open("tasks.txt", "w") as file:
+                for task in self.tasks:
+                    completed = "1" if task.completed else "0" #Convert status to 1 or 0
+                    file.write(
+                        f"{task.name}|"
+                        f"{task.priority}|"
+                        f"{task.due_date}|"
+                        f"{completed}\n"
+                    ) #Write task information
+            return True
+        except OSError:
+            return False
