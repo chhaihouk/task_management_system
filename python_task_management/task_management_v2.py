@@ -208,21 +208,8 @@ tk.Button(button_frame,text="Refresh",width=15,command=task_manager.view_tasks).
 # COMPLETE BUTTON
 tk.Button(button_frame,text="Complete",width=15,command=task_manager.complete_task).grid(row=0,column=2,padx=8,pady=5) #Create the Complete button
 # DELETE BUTTON
-
-# Create the Delete button.
-tk.Button(
-    button_frame,
-    text="Delete",
-    width=15,
-    command=task_manager.delete_task
-).grid(
-    row=0,
-    column=3,
-    padx=8,
-    pady=5
-)
+tk.Button(button_frame,text="Delete",width=15,command=task_manager.delete_task).grid(row=0,column=3,padx=8,pady=5) #Create the Delete button
 # ADD TASK BUTTON
-
 # Create the Add Task button.
 tk.Button(
     button_frame,
