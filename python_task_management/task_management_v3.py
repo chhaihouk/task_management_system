@@ -83,3 +83,10 @@ class TaskManager:
         task.completed = True #Mark the task as completed
         self.save_tasks() #Save the changes
         return True, "Task marked as completed."
+    # Delete a task.
+    def delete_task(self, index):
+        if index < 0 or index >= len(self.tasks): #Check the selected index
+            return False, "Please select a task."
+        self.tasks.pop(index) #Remove the selected task
+        self.save_tasks() #Save the changes
+        return True, "Task deleted successfully."
