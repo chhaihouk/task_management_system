@@ -195,3 +195,21 @@ class LoginWindow:
             except OSError:
                 messagebox.showerror("Error","Unable to save the password.") #Tell the user the password could not be saved
         tk.Button(password_window,text="Save Password",width=15,command=save_password,bg="#10B981",fg="white",activebackground="#059669",relief="flat",font=("Arial", 9, "bold"),cursor="hand2").pack(pady=10) #Create save password button
+    # Check the entered password.
+    def login(self):
+        password = self.password_entry.get() #Get entered password
+        if not os.path.exists("password.txt"): #Check if a password exists
+            self.status_label.config(text="Please set a password first.") #Tell the user to set a password
+            return
+        try:
+            with open("password.txt", "r") as file:
+                saved_password = file.read().strip() #Read saved hash
+        except OSError:
+            self.status_label.config(text="Unable to access password file.")
+            return
+        entered_password = self.hash_password(password) #Hash the entered password
+        if entered_password == saved_password: #Compare password hashes
+            self.logged_in = True #Allow access
+            self.window.destroy() #Close login window
+        else:
+            self.status_label.config(text="Incorrect password.") #Display login error
