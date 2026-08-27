@@ -395,3 +395,42 @@ class TaskManagementApp:
                 self.clear_fields() #Clear input fields
                 self.refresh_tasks() #Refresh the table
                 messagebox.showinfo("Success",message) #Show success message
+    # REFRESH TASKS
+    def refresh_tasks(self):
+        search_text = self.search_var.get().strip().lower() #Get search text
+        priority_filter = self.filter_priority_var.get() #Get priority filter
+        status_filter = self.filter_status_var.get() #Get status filter
+        filtered_tasks = list(self.manager.tasks) #Start with all tasks
+        if search_text:
+            filtered_tasks = [
+                task
+                for task in filtered_tasks
+                if search_text in task.name.lower()
+            ] #Filter by search text
+        if priority_filter != "All":
+            filtered_tasks = [
+                task
+                for task in filtered_tasks
+                if task.priority == priority_filter
+            ] #Filter by priority
+        if status_filter == "Completed":
+            filtered_tasks = [
+                task
+                for task in filtered_tasks
+                if task.completed
+            ] #Show completed tasks
+        elif status_filter == "Not Completed":
+            filtered_tasks = [
+                task
+                for task in filtered_tasks
+                if not task.completed
+            ] #Show incomplete tasks
+        filtered_tasks = self.sort_tasks(filtered_tasks) #Sort filtered tasks
+        self.displayed_tasks = filtered_tasks #Store displayed tasks
+        for item in self.task_table.get_children():
+            self.task_table.delete(item) #Remove old rows
+        for number, task in enumerate(filtered_tasks,1):
+            status = ("Completed"if task.completed else "Not Completed") #Set task status
+            row_tag = ("even"if number % 2 == 0 else "odd") #Choose alternating row colour
+            self.task_table.insert("",tk.END,values=(number,task.name,task.priority,task.due_date,status),tags=(row_tag,)) #Add task to table
+        self.task_count_label.config(text=(f"Showing {len(filtered_tasks)} "f"of {len(self.manager.tasks)} tasks")) #Update task counter
