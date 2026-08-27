@@ -196,42 +196,13 @@ task_scrollbar = tk.Scrollbar(task_list_frame,command=task_list.yview) #Create a
 task_scrollbar.pack(side=tk.RIGHT,fill=tk.Y) #Place the scrollbar beside the Listbox
 task_list.config(yscrollcommand=task_scrollbar.set) #Connect the Listbox to the scrollbar
 # BUTTONS
-
-# Create a label above the buttons.
-tk.Label(
-    window,
-    text="Task Actions",
-    font=("Arial", 14, "bold")
-).pack(pady=(0, 5))
-
-# Create a frame to hold all of the buttons.
-button_frame = tk.Frame(window)
-
-# Place the button frame inside the main window.
-button_frame.pack()
-
-
+tk.Label(window,text="Task Actions",font=("Arial", 14, "bold")).pack(pady=(0, 5)) #Create a label above the buttons
+button_frame = tk.Frame(window) #Create a frame to hold all of the buttons
+button_frame.pack() #Place the button frame inside the main window
 # Create the TaskManager object.
-# This also loads any previously saved tasks.
-task_manager = TaskManager()
-
-
+task_manager = TaskManager() #This also loads any previously saved tasks
 # ADD TASK BUTTON
-
-# Create the Add Task button.
-tk.Button(
-    button_frame,
-    text="Add Task",
-    width=15,
-    command=task_manager.add_task
-).grid(
-    row=0,
-    column=0,
-    padx=8,
-    pady=5
-)
-
-
+tk.Button(button_frame,text="Add Task",width=15,command=task_manager.add_task).grid(row=0,column=0,padx=8,pady=5) #Create the Add Task button
 # REFRESH BUTTON
 
 # Create the Refresh button.
