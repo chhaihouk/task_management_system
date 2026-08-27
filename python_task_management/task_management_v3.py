@@ -451,3 +451,10 @@ class TaskManagementApp:
         self.priority_var.set("Medium") #Reset the priority
         self.date_entry.set_date(date.today()) #Reset the date picker
         self.name_entry.focus() #Put the cursor back into the task name field
+    # CLEAR FILTERS
+    def clear_filters(self):
+        self.search_var.set("") #Clear the search box
+        self.filter_priority_var.set("All") #Reset the priority filter
+        self.filter_status_var.set("All") #Reset the status filter
+        self.sort_var.set("Default") #Reset the sorting option
+        self.refresh_tasks() #Display all tasks again
