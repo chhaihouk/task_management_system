@@ -97,46 +97,21 @@ class TaskManager: #This class controls the tasks and the main task functions
             messagebox.showinfo("Success","Task marked as completed!")
     # DELETE TASK
     def delete_task(self):
-        # Get the task selected by the user.
-        selected = task_list.curselection()
-
+        selected = task_list.curselection() #Get the task selected by the user
         # Check if the user selected a task.
         if not selected:
-            messagebox.showerror(
-                "Error",
-                "Please select a task to delete."
-            )
+            messagebox.showerror("Error","Please select a task to delete.")
             return
-
-        # Store the position of the selected task.
-        task_index = selected[0]
-
-        # Get the selected Task object.
-        task = self.tasks[task_index]
-
-        # Ask the user to confirm the deletion.
-        confirm = messagebox.askyesno(
-            "Delete Task",
-            f"Are you sure you want to delete '{task.name}'?"
-        )
-
+        task_index = selected[0] #Store the position of the selected task
+        task = self.tasks[task_index] # Get the selected Task object
+        confirm = messagebox.askyesno("Delete Task",f"Are you sure you want to delete '{task.name}'?") #Ask the user to confirm the deletion
         # Only delete the task if the user chooses Yes.
         if confirm:
-            # Remove the selected task from the task list.
-            self.tasks.pop(task_index)
-
-            # Save the updated task list.
-            self.save_tasks()
-
-            # Refresh the task list.
-            self.view_tasks()
-
+            self.tasks.pop(task_index) #Remove the selected task from the task list
+            self.save_tasks() #Save the updated task list
+            self.view_tasks() #Refresh the task list
             # Tell the user the task was deleted.
-            messagebox.showinfo(
-                "Success",
-                "Task deleted successfully."
-            )
-
+            messagebox.showinfo("Success","Task deleted successfully.")
     # SAVE TASKS
     def save_tasks(self):
         # Try to save all tasks to the text file.
