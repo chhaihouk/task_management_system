@@ -356,3 +356,16 @@ class TaskManagementApp:
         tk.Label(edit_window,text="Edit the task using the fields above.",font=("Arial", 10),bg="#0F172A",fg="#F8FAFC").pack(pady=20) #Create popup message
         tk.Button(edit_window,text="Save Changes",width=15,command=lambda: self.save_edit(index,edit_window),bg="#10B981",fg="white",activebackground="#059669",relief="flat",font=("Arial", 10, "bold"),cursor="hand2").pack(pady=5) #Create save button
         tk.Button(edit_window,text="Cancel",width=15,command=edit_window.destroy,bg="#475569",fg="white",activebackground="#334155",relief="flat",font=("Arial", 10, "bold"),cursor="hand2").pack(pady=5) #Create cancel button
+    # SAVE EDIT
+    def save_edit(self, index, edit_window):
+        name = self.name_entry.get().strip() #Get updated name
+        priority = self.priority_var.get() #Get updated priority
+        due_date = self.date_entry.get() #Get updated date
+        success, message = self.manager.edit_task(index,name,priority,due_date) #Save the changes
+        if success:
+            edit_window.destroy() #Close popup
+            self.clear_fields() #Clear fields
+            self.refresh_tasks() #Refresh task table
+            messagebox.showinfo("Success",message) #Show success message
+        else:
+            messagebox.showerror("Invalid Task",message) #Show validation error
