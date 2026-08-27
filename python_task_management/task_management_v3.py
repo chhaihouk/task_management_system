@@ -145,3 +145,23 @@ class LoginWindow:
         self.window.resizable(False, False) #Prevent resizing
         self.window.configure(bg="#0F172A") #Set background colour
         self.create_login_widgets() #Create login widgets
+    # Create the login screen.
+    def create_login_widgets(self):
+        title = tk.Label(self.window,text="TASK MANAGEMENT SYSTEM",font=("Arial", 20, "bold"),bg="#0F172A",fg="#38BDF8") #Create the title
+        title.pack(pady=(35, 5)) #Place the title
+        subtitle = tk.Label(self.window,text="Private Task Manager",font=("Arial", 11),bg="#0F172A",fg="#CBD5E1") #Create the subtitle
+        subtitle.pack(pady=(0, 20)) #Place the subtitle
+        login_frame = tk.Frame(self.window,bg="#1E293B",padx=25,pady=20) #Create the login frame
+        login_frame.pack(padx=30,fill="x") #Place the login frame
+        tk.Label(login_frame,text="Password:",font=("Arial", 10, "bold"),bg="#1E293B",fg="#F8FAFC").pack(pady=(0, 5)) #Create password label
+        self.password_entry = tk.Entry(login_frame,show="*",width=30,font=("Arial", 11),bg="#F8FAFC",fg="#0F172A",insertbackground="#0F172A",relief="flat") #Create password entry
+        self.password_entry.pack(pady=5) #Place password entry
+        self.status_label = tk.Label(login_frame,text="",font=("Arial", 9),bg="#1E293B",fg="#EF4444") #Create login status label
+        self.status_label.pack(pady=5) #Place status label
+        tk.Button(login_frame,text="Login",width=18,command=self.login,bg="#2563EB",fg="white",activebackground="#1D4ED8",activeforeground="white",relief="flat",font=("Arial", 10, "bold"),cursor="hand2").pack(pady=5) #Create login button
+        tk.Button(login_frame,text="Set / Change Password",width=18,command=self.set_password,bg="#475569",fg="white",activebackground="#334155",activeforeground="white",relief="flat",font=("Arial", 9, "bold"),cursor="hand2").pack(pady=5) #Create password setup button
+        self.password_entry.focus() #Put the cursor into the password box
+        self.window.bind("<Return>",lambda event: self.login()) #Allow Enter to login
+    # Hash the password for safer storage.
+    def hash_password(self, password):
+        return hashlib.sha256(password.encode()).hexdigest() #Return the password hash
