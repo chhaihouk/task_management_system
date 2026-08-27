@@ -223,3 +223,17 @@ class TaskManagementApp:
         self.create_widgets() #Create GUI widgets
         self.refresh_tasks() #Display tasks
         self.name_entry.focus() #Focus the task name field
+    # Configure the main window.
+    def setup_window(self):
+        self.window.title("Task Management System - Version 3") #Set the window title
+        self.window.geometry("1050x700") #Set the starting window size
+        self.window.minsize(900,600) #Set the minimum window size
+        self.window.resizable(True,True) #Allow resizing
+        self.window.configure(bg="#0F172A") #Set the background colour
+        style = ttk.Style() #Create a ttk style
+        style.theme_use("clam") #Use the Clam theme
+        style.configure("Treeview",background="#1E293B",foreground="#F8FAFC",fieldbackground="#1E293B",rowheight=32,font=("Arial", 10)) #Style the task table
+        style.configure("Treeview.Heading",background="#2563EB",foreground="white",font=("Arial", 10, "bold")) #Style table headings
+        style.map("Treeview",background=[("selected", "#0EA5E9")],foreground=[("selected", "white")]) #Style selected rows
+        style.configure("TCombobox",fieldbackground="#F8FAFC",background="#F8FAFC",foreground="#0F172A",padding=5) #Style dropdown menus
+        style.configure("Vertical.TScrollbar",background="#334155",troughcolor="#0F172A",arrowcolor="white") #Style scrollbar
