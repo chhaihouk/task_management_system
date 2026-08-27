@@ -50,36 +50,13 @@ class TaskManager: #This class controls the tasks and the main task functions
             return
         # CREATE THE TASK
         # Create a new Task object using the information entered.
-        # The task is automatically set as not completed.
-        self.tasks.append(
-            Task(name, priority, due_date)
-        )
-
-
-        # Save the updated task list to the text file.
-        self.save_tasks()
-
-
-        # Clear the task name input box.
-        name_entry.delete(0, tk.END)
-
-        # Clear the due date input box.
-        date_entry.delete(0, tk.END)
-
-        # Reset the priority back to Medium.
-        priority_var.set("Medium")
-
-
-        # Refresh the task list so the new task appears.
-        self.view_tasks()
-
-
-        # Tell the user that the task was successfully added.
-        messagebox.showinfo(
-            "Success",
-            "Task added successfully!"
-        )
-
+        self.tasks.append(Task(name, priority, due_date)) #The task is automatically set as not completed
+        self.save_tasks() #Save the updated task list to the text file
+        name_entry.delete(0, tk.END) #Clear the task name input box
+        date_entry.delete(0, tk.END) #Clear the due date input box
+        priority_var.set("Medium") #Reset the priority back to Medium
+        self.view_tasks() #Refresh the task list so the new task appears
+        messagebox.showinfo("Success","Task added successfully!") #Tell the user that the task was successfully added
     # VIEW TASKS
     def view_tasks(self):
         # Clear the current task list before displaying it again.
