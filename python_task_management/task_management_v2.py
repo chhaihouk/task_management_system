@@ -17,71 +17,38 @@ class TaskManager: #This class controls the tasks and the main task functions
         self.tasks = [] #Create an empty list to store all Task objects
         self.load_tasks() #Load any tasks that were previously saved in the text file
     # ADD TASK
-
-    # This function adds a new task to the task list.
-    def add_task(self):
-
+    def add_task(self): #This function adds a new task to the task list
         # Get the task name from the name input box.
-        # strip() removes unnecessary spaces from the beginning/end.
-        name = name_entry.get().strip()
-
-        # Get the priority selected by the user.
-        priority = priority_var.get()
-
-        # Get the due date entered by the user.
-        due_date = date_entry.get().strip()
-
-        # Store the priority options allowed by the program.
-        valid_priorities = ["High", "Medium", "Low"]
-
+        name = name_entry.get().strip() #strip() removes unnecessary spaces from the beginning/end
+        priority = priority_var.get() #Get the priority selected by the user
+        due_date = date_entry.get().strip() #Get the due date entered by the user
+        valid_priorities = ["High", "Medium", "Low"] #Store the priority options allowed by the program
         # Validate task name.
         if name == "":
-            messagebox.showerror(
-                "Error",
-                "Task name cannot be empty."
-            )
+            messagebox.showerror("Error","Task name cannot be empty.")
             return
-
         # Check that the task name is long enough.
         if len(name) < 3:
-            messagebox.showerror(
-                "Error",
-                "Task name must be at least 3 characters long."
-            )
+            messagebox.showerror("Error","Task name must be at least 3 characters long.")
             return
-
         # VALIDATE PRIORITY
-
         # Check that the selected priority is valid.
         if priority not in valid_priorities:
-            messagebox.showerror(
-                "Error",
-                "Please select High, Medium, or Low priority."
-            )
+            messagebox.showerror("Error","Please select High, Medium, or Low priority.")
             return
         # VALIDATE DATE
-
         # Validate the due date.
         try:
-            # Convert the entered text into a real date.
-            valid_date = datetime.strptime(due_date, "%d/%m/%Y")
-
+            valid_date = datetime.strptime(due_date, "%d/%m/%Y") #Convert the entered text into a real date
         except ValueError:
             # Tell the user if the date is invalid.
-            messagebox.showerror(
-                "Error",
-                "Please enter a valid date using DD/MM/YYYY."
-            )
+            messagebox.showerror("Error","Please enter a valid date using DD/MM/YYYY.")
             return
         # Check that the due date is not in the past.
         if valid_date < datetime.now():
-            messagebox.showerror(
-        "Error",
-        "The due date cannot be in the past."
-        )
+            messagebox.showerror("Error","The due date cannot be in the past.")
             return
         # CREATE THE TASK
-
         # Create a new Task object using the information entered.
         # The task is automatically set as not completed.
         self.tasks.append(
